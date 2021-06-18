@@ -1,33 +1,46 @@
 import React from 'react';
 
 class App extends React.Component {
+
    constructor(props) {
-      super(props);
-      this.state = {data: '預設資料...'};
-   };
-   updateState=(e)=> {
-      this.setState({data: e.target.value});
+  
+     super(props);
+  
+     this.fileInput = React.createRef();
+  
    }
- 
+  
+   handleSubmit = (event) => {
+  
+     event.preventDefault();
+  
+     alert(`選擇檔案 - ${this.fileInput.current.files[0].name}`);
+  
+   }
+  
+  
    render() {
-      return (
-         <div>
-            <Content myDataProp = {this.state.data} updateStateProp = {this.updateState} />
-         </div>
-      );
+  
+     return (
+  
+       <form onSubmit={this.handleSubmit}>
+  
+         <label>
+  
+           上傳檔案：<input type="file" ref={this.fileInput} />
+  
+         </label>
+  
+         <br />
+  
+         <button type="submit">Submit</button>
+  
+       </form>
+  
+     );
+  
    }
- }
- 
- 
- class Content extends React.Component {
-   render() {
-      return (
-         <div>
-            <input type = "text" value = {this.props.myDataProp} onChange = {this.props.updateStateProp} />
-            <h3>{this.props.myDataProp}</h3>
-         </div>
-      );
-   }
- }
+  
+  }
 
 export default App;

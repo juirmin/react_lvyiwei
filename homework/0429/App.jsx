@@ -8,9 +8,8 @@ class App extends React.Component {
       this.state = {
          data: '初始資料，來自父元件 this.state'
       }
-      this.updateState = this.updateState.bind(this);
    };
-   updateState() {
+   updateState=()=> {
       this.setState({ data: '子元件使用父元件 event 改變父元件 state' })
    }
    render() {

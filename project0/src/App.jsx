@@ -3,34 +3,37 @@ import React from 'react';
 class App extends React.Component {
 
    constructor(props) {
-
-      super(props);
-      this.state = {
-         data: '初始資料，來自父元件 this.state'
-      }
-      this.updateState = this.updateState.bind(this);
-   };
-   updateState() {
-      this.setState({ data: '子元件使用父元件 event 改變父元件 state' })
+   
+     super(props);
+   
+     this.state = {name: "按我"};
+   
+     //this.shoot = this.shoot.bind(this);
+   
+     // 使用 Arrow Function 不需要綁定 this
+   
    }
+   
+   shoot = (a) => {
+   
+     console.log('this is:', this);
+   
+     console.log(a);
+   
+     this.setState({name: "我被按了"});
+   
+   }
+   
    render() {
-      return (
-         <div>
-            <Content updateStateProp={this.updateState} myDataProp={this.state.data}></Content>
-         </div>
-      );
+   
+     return (
+   
+       <button onClick={() => this.shoot("我是參數")}>{this.state.name}</button>
+   
+     );
+   
    }
-}
-
-class Content extends React.Component {
-   render() {
-      return (
-         <div>
-            <button onClick={this.props.updateStateProp}>我是Content子元件的按鈕</button>
-            <h3>{this.props.myDataProp}</h3>
-         </div>
-      );
+   
    }
-}
 
 export default App;
